@@ -1,0 +1,31 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - eslint:recommended
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+overrides:
+  - files:
+      - '**/*.js'
+      - '**/*.ts'
+    excludedFiles:
+      - 'webpack.config.js'
+    extends:
+      - plugin:@typescript-eslint/recommended
+    parser: '@typescript-eslint/parser'
+  - files:
+      - '**/*.svelte'
+    extends:
+      - plugin:svelte/prettier
+    parser: 'svelte-eslint-parser'
+  - files:
+      - 'webpack.config.js'
+    parserOptions:
+      sourceType: script
+    env:
+      node: true
+rules: {}
