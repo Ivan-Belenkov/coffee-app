@@ -2,13 +2,38 @@
   "name": "coffee-app",
   "version": "1.0.0",
   "description": "Wisebits FE test task",
-  "main": "index.js",
+  "main": "src/main.ts",
   "author": "Ivan Belenkov<belenkov.i.j@gmail.com>",
+  "repository": "https://github.com/Ivan-Belenkov/coffee-app",
   "license": "MIT",
   "devDependencies": {
+    "@tsconfig/svelte": "^5.0.2",
+    "@types/node": "^20.11.16",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.10.0",
     "eslint": "^8.56.0",
-    "prettier": "^3.2.5"
+    "eslint-plugin-svelte": "^2.35.1",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.0",
+    "prettier": "^3.2.5",
+    "svelte": "^4.2.10",
+    "svelte-check": "^3.6.3",
+    "svelte-loader": "^3.1.9",
+    "svelte-preprocess": "^5.1.3",
+    "ts-loader": "^9.5.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "scripts": {
+    "build:prod": "npm run clean && cross-env NODE_ENV=production npx webpack",
+    "build:dev": "npm run clean && npx webpack",
+    "start": "npx webpack-dev-server",
+    "clean": "npx rimraf ./dist/*",
+    "validate": "svelte-check"
   }
 }
