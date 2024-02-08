@@ -2,10 +2,12 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "types": ["svelte", "jest"],
+    "types": ["svelte", "reflect-metadata", "jest"],
     "paths": {
       "src/*": ["src/*"]
     },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "verbatimModuleSyntax": false,
   },
   "include": ["./src/**/*"],
