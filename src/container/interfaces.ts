@@ -11,3 +11,7 @@ export interface IStoreService {
   createKeyValueStore<T extends StoreData>(key: string | symbol, initialData: T): Readable<T>;
   get(key: string | symbol): Readable<StoreData> | undefined;
 }
+
+export interface IHttpService {
+  get<T>(url: string): Promise<T>;
+}
