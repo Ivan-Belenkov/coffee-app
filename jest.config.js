@@ -15,5 +15,6 @@ module.exports = {
         useESM: true
       }
     ]
-  }
+  },
+  setupFiles: [resolve(__dirname, 'src', 'test_utils', 'testPreloader.ts')]
 };

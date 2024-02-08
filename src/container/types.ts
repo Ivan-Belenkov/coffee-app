@@ -1,7 +1,8 @@
 import { enumKeysToArray, getSymbolFor } from 'src/utils/utils';
 
 enum SERVICE_NAMES {
-  SvelteService
+  SvelteService,
+  StoreService
 }
 
 export type ServiceNames = keyof typeof SERVICE_NAMES;
