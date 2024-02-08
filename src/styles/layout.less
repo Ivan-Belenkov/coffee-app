@@ -1,0 +1,54 @@
+@import "variables";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: @color_coffee_light;
+  color: @color_black;
+  min-width: @min_viewport_width;
+  font-family: @ff_main;
+  font-weight: 300;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+b, strong {
+  font-weight: 500;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-family: @ff_caption;
+  font-weight: 700;
+}
+
+.column {
+  margin-right: auto;
+  margin-left: auto;
+  width: @mobile_column_width;
+  min-width: @mobile_column_min_width;
+  @media (min-width: 601px) {
+    width: 580px;
+  }
+}
+
+.text-trim {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
