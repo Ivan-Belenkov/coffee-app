@@ -11,6 +11,7 @@ export type CoffeeType = {
   variety: string;
   intensifier: string;
   tags: CoffeeTag[];
+  imageUrl: string;
 };
 
 export type CoffeeTag = {

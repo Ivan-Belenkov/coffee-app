@@ -1,6 +1,6 @@
 import type { Readable } from 'svelte/store';
-import type { StoreData } from 'src/store/types';
 import type { SvelteComponent } from 'svelte';
+import type { CoffeeType, LoadingState, StoreData } from 'src/store/types';
 
 export interface ISvelteService {
   create<T>(selector: Element, component: T): SvelteComponent;
@@ -14,4 +14,11 @@ export interface IStoreService {
 
 export interface IHttpService {
   get<T>(url: string): Promise<T>;
+}
+
+export interface ICoffeeTypeService {
+  load(): Promise<void>;
+  stopPolling(): void;
+  getLoadingState(): Readable<LoadingState>;
+  getList(): Readable<CoffeeType[]>;
 }
