@@ -1,5 +1,18 @@
-<button class="load-more-btn load-more-btn--loading"
-        title="Load more">
+<script lang="ts">
+  import { get, SERVICE_TYPES } from "src/container/container";
+  import type { ICoffeeTypeService } from "src/container/interfaces";
+  export let disabled = false;
+
+  const CoffeeTypeService = get<ICoffeeTypeService>(SERVICE_TYPES.CoffeeTypeService);
+
+  let loadingState = CoffeeTypeService.getLoadingState();
+</script>
+
+<button class="load-more-btn"
+        class:load-more-btn--loading={$loadingState.loading}
+        disabled={disabled || $loadingState.loading}
+        title="Load more"
+        on:click={() => CoffeeTypeService.load()}>
   <span class="visually-hidden">Load more</span>
 </button>
 
