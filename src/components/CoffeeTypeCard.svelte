@@ -1,20 +1,24 @@
 <script lang="ts">
   import TagList from "src/components/TagList.svelte";
+  import type { CoffeeType } from "src/store/types";
+
+  export let coffeeType: CoffeeType;
+  let { blendName, origin, variety, intensifier, tags, imageUrl } = coffeeType;
 </script>
 
 <article class="card">
   <div class="card__cover card__no-pe">
-    <img class="card__pic card__no-pe" src="https://placehold.it/500" alt="Placeholder">
+    <img class="card__pic card__no-pe" src={imageUrl} alt={blendName}>
   </div>
   <div class="card__body card__no-pe">
     <h1 class="card__header card__no-pe">
-      <a class="card__link" href="#nonexistent">Blue Enlightenment</a>
+      <a class="card__link" href="#nonexistent">{blendName}</a>
     </h1>
-    <p class="card__origin card__no-pe text-trim">Chiriqui, Panama</p>
-    <p class="card__variety card__no-pe">Ethiopian Heirloom</p>
-    <p class="card__intensifier card__no-pe text-trim">juicy</p>
+    <p class="card__origin card__no-pe text-trim">{origin}</p>
+    <p class="card__variety card__no-pe">{variety}</p>
+    <p class="card__intensifier card__no-pe text-trim">{intensifier}</p>
     <div class="card__tags">
-      <TagList />
+      <TagList tagList={tags} />
     </div>
   </div>
 </article>

@@ -29,7 +29,7 @@
       <li in:slide={slideInSettings}
           class="list__item"
       >
-        <CoffeeTypeCard {item} />
+        <CoffeeTypeCard coffeeType={item} />
       </li>
     {/each}
   </ul>
