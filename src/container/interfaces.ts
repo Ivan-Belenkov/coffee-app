@@ -26,3 +26,11 @@ export interface ICoffeeTypeService {
 export interface ITagService {
   create(tagString: string): CoffeeTag[];
 }
+
+export interface ILoremflickrHelperService {
+  loadUrl(url: string): Promise<string>;
+}
+
+export interface IImgLoaderService {
+  load(url: string, fromLF?: boolean): Promise<HTMLImageElement>;
+}

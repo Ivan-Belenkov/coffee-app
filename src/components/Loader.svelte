@@ -8,6 +8,7 @@
   @import "src/styles/variables";
   :root {
     --loader-color: @color_coffee_dark;
+    --loader-size: 100px;
   }
   .loader {
     width: 100%;
@@ -18,6 +19,8 @@
     &__img {
       fill: var(--loader-color);
       animation: pulse 2s infinite ease;
+      width: var(--loader-size);
+      height: var(--loader-size);
     }
     @keyframes pulse {
       0% {

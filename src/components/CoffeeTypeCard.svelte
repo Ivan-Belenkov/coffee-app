@@ -1,14 +1,27 @@
 <script lang="ts">
   import TagList from "src/components/TagList.svelte";
   import type { CoffeeType } from "src/store/types";
+  import AsyncLoader from "src/components/AsyncLoader.svelte";
+  import { get, SERVICE_TYPES } from "src/container/container";
+  import type { IImgLoaderService } from "src/container/interfaces";
+
+  const imgLoader = get<IImgLoaderService>(SERVICE_TYPES.ImgLoaderService);
 
   export let coffeeType: CoffeeType;
   let { blendName, origin, variety, intensifier, tags, imageUrl } = coffeeType;
+  let promise = imgLoader.load(imageUrl, true);
 </script>
 
 <article class="card">
   <div class="card__cover card__no-pe">
-    <img class="card__pic card__no-pe" src={imageUrl} alt={blendName}>
+    <AsyncLoader {promise} let:value={img}>
+      <img class="card__pic" src={img.src} alt={blendName}>
+      <div slot="error" class="card__error">
+        <svg class="card__error-icon">
+          <use xlink:href="#error"></use>
+        </svg>
+      </div>
+    </AsyncLoader>
   </div>
   <div class="card__body card__no-pe">
     <h1 class="card__header card__no-pe">
@@ -39,6 +52,7 @@
     &__cover {
       overflow: hidden;
       aspect-ratio: 16/9;
+      background-color: @color_coffee;
       @media (min-width: 601px) {
         width: 33%;
         flex: none;
@@ -51,6 +65,19 @@
       object-fit: cover;
       transform: scale(1);
       transition: transform .25s linear;
+    }
+    &__error {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      background: @color_gray_light;
+    }
+    &__error-icon {
+      fill: @color_error;
+      width: 100px;
+      height: 100px;
     }
     &__body {
       padding: .8em;

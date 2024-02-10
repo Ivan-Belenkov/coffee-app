@@ -5,7 +5,9 @@ enum SERVICE_NAMES {
   StoreService,
   HttpService,
   CoffeeTypeService,
-  TagService
+  TagService,
+  LoremflickrHelperService,
+  ImgLoaderService
 }
 
 export type ServiceNames = keyof typeof SERVICE_NAMES;
