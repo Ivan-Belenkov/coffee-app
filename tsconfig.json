@@ -2,10 +2,11 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "types": ["svelte"],
+    "types": ["svelte", "jest"],
     "paths": {
       "src/*": ["src/*"]
-    }
+    },
+    "verbatimModuleSyntax": false,
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules/*", "dist/*"]
