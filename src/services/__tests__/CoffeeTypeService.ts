@@ -9,6 +9,7 @@ import {
 import { FakeHttpService, getMock as getHttpMock } from 'src/services/__mocks__/HttpService';
 import { SERVICE_TYPES } from 'src/container/types';
 import { CoffeeType, STORE_TYPES } from 'src/store/types';
+import { createMock, FakeTagService } from 'src/services/__mocks__/TagService';
 
 jest.useFakeTimers();
 jest.spyOn(global, 'setTimeout');
@@ -49,6 +50,7 @@ describe('CoffeeTypeService', () => {
     container.bind(CoffeeTypeService).toSelf();
     container.bind(SERVICE_TYPES.StoreService).to(FakeStoreService);
     container.bind(SERVICE_TYPES.HttpService).to(FakeHttpService);
+    container.bind(SERVICE_TYPES.TagService).to(FakeTagService);
 
     coffeeTypeService = container.get(CoffeeTypeService);
   });
@@ -70,6 +72,7 @@ describe('CoffeeTypeService', () => {
   it('should correctly retrieve and transform data', async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getHttpMock.mockImplementation((url) => Promise.resolve(data));
+    createMock.mockImplementation(() => result.tags);
     await coffeeTypeService.load();
 
     expect(getHttpMock).toHaveBeenCalled();

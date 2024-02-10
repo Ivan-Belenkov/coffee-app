@@ -1,4 +1,4 @@
-import type { ICoffeeTypeService, IHttpService, IStoreService } from 'src/container/interfaces';
+import type { ICoffeeTypeService, IHttpService, IStoreService, ITagService } from 'src/container/interfaces';
 import { inject, injectable } from 'inversify';
 import { SERVICE_TYPES } from 'src/container/container';
 import { type CoffeeTag, type CoffeeType, type LoadingState, STORE_TYPES } from 'src/store/types';
@@ -23,12 +23,15 @@ export class CoffeeTypeService implements ICoffeeTypeService {
   private timer!: ReturnType<typeof setTimeout>;
   protected httpService: IHttpService;
   protected storeService: IStoreService;
+  protected tagService: ITagService;
   constructor(
     @inject(SERVICE_TYPES.HttpService) httpService: IHttpService,
-    @inject(SERVICE_TYPES.StoreService) storeService: IStoreService
+    @inject(SERVICE_TYPES.StoreService) storeService: IStoreService,
+    @inject(SERVICE_TYPES.TagService) tagService: ITagService
   ) {
     this.httpService = httpService;
     this.storeService = storeService;
+    this.tagService = tagService;
   }
 
   async load() {
@@ -53,13 +56,7 @@ export class CoffeeTypeService implements ICoffeeTypeService {
 
   private transformData(raw: RawCoffeeType): CoffeeType {
     const blendName = raw.blend_name ?? '';
-    const tags: CoffeeTag[] = (raw.notes ? raw.notes.split(',') : []).map(
-      (item, index): CoffeeTag => ({
-        id: index + 1,
-        text: item,
-        color: '#583e23'
-      })
-    );
+    const tags: CoffeeTag[] = this.tagService.create(raw.notes ?? '');
     const copy = { ...raw };
     delete copy.blend_name;
     delete copy.notes;

@@ -1,6 +1,6 @@
 import type { Readable } from 'svelte/store';
 import type { SvelteComponent } from 'svelte';
-import type { CoffeeType, LoadingState, StoreData } from 'src/store/types';
+import type { CoffeeTag, CoffeeType, LoadingState, StoreData } from 'src/store/types';
 
 export interface ISvelteService {
   create<T>(selector: Element, component: T): SvelteComponent;
@@ -21,4 +21,8 @@ export interface ICoffeeTypeService {
   stopPolling(): void;
   getLoadingState(): Readable<LoadingState>;
   getList(): Readable<CoffeeType[]>;
+}
+
+export interface ITagService {
+  create(tagString: string): CoffeeTag[];
 }
