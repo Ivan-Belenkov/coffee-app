@@ -2,6 +2,8 @@
 
 Wisebits FE test task
 
+The application is available at https://ivan-belenkov.github.io/coffee-app/
+
 ## Installation
 
 Use the package manager [npm](https://www.npmjs.com/)
@@ -70,6 +72,4 @@ yarn test
 
 ### Author
 
-Ivan Belenkov
-
-<belenkov.i.j@gmail.com>
+Ivan Belenkov (<belenkov.i.j@gmail.com>)

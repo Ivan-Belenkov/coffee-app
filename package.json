@@ -46,6 +46,8 @@
     "start": "npx webpack-dev-server",
     "clean": "npx rimraf ./dist/*",
     "validate": "svelte-check",
-    "test": "npx jest src"
+    "test": "npx jest src",
+    "predeploy": "npm run build:prod",
+    "deploy": "npx gh-pages -d dist"
   }
 }
